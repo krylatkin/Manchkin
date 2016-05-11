@@ -1,0 +1,23 @@
+Методы объекта
+https://learn.javascript.ru/es-object#методы-объекта
+
+Параметры по умолчанию
+https://learn.javascript.ru/es-function#параметры-по-умолчанию
+
+Вывод строк
+alert(`title=${title} width=${width} height=${height}`);
+
+Функции через =>
+
+в этой главе нет задач, удобно практиковаться можно тут http://es6katas.org/
+оч прикольно, разбито по темам, надо сделать, чтоб тесты прошли
+
+Поиск: getElement* и querySelector* и не только (ES5)
+https://learn.javascript.ru/searching-elements-dom
+
+Применяем ООП: Drag'n'Drop++
+https://learn.javascript.ru/drag-and-drop-plus
+
+
+// ООП
+https://github.com/Yaroshuk/Small_Calendar/blob/master/app/js/SmallCalendar.js

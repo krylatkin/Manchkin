@@ -1,0 +1,14 @@
+0. Рендеринг инвентаря
+1. Тесты на правильность рендеринга
+2. События
+3. Тесты на нажатие кнопок - правильность расчета и правильность рендеринга (если, правильный рендеринг и то расчеты верны?)
+
+
+
+https://cometd.org/
+https://learn.javascript.ru/csrf
+https://learn.javascript.ru/event-details
+https://ru.wikipedia.org/wiki/Comet_(%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5)
+
+AJAX и COMET 	https://learn.javascript.ru/ajax
+https://learn.javascript.ru/document	

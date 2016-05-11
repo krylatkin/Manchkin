@@ -1,0 +1,14 @@
+.param {
+	font-weight: bold;
+}
+ul.inventory-list {
+	padding: 0px;
+}
+.inventory-item {
+	display: inline-block;
+	border: 1px solid black;
+	cursor: pointer;
+}
+.inventory-item.active {
+	border: 2px solid blue;
+}

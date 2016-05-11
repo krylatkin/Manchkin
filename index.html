@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>Manchkin</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="styles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- https://cdn.polyfill.io/v2/docs/ -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+    <!-- 500 Error Code -->
+    <!-- <script src="https://cdn.jsdelivr.net/polyfills/polyfill.js+closest"></script> -->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <h1>Manchkin</h1>
+
+      <div class="row">
+        <div id="player1-holder" class="col-xs-6">
+
+          <div class="char">
+            <p>Name: <span class="param name">_Player 1</span></p>
+            <p>Race: <span class="param race">_Elf</span></p>
+            <p>Class: <span class="param charClass">_Warrior</span></p>
+            <p>Sex: <span class="param sex">_Male</span></p>
+            <p>Power (<span class="param power">_4</span>)</p>
+            <p>Level (<span class="param level">_1</span>)</p>
+            <p>Inventory (<span class="param inventoryCount">_3</span>)</p>
+            <div class="inventory">
+              <ul class="inventory-list">
+                <li class="inventory-item" data-card="item1" data-from="inventory">
+                  <p>Name: Name</p>
+                  <p>Level: 1</p>
+                  <p>Power: 1</p>
+                  <p>Gold: 200</p>
+                </li>
+                <li class="inventory-item active" data-card="item2" data-from="inventory">
+                  <p>Name: Name</p>
+                  <p>Level: 1</p>
+                  <p>Power: 1</p>
+                  <p>Gold: 200</p>
+                </li>
+                <li class="inventory-item" data-card="item3" data-from="inventory">
+                  <p>Name: Name</p>
+                  <p>Level: 1</p>
+                  <p>Power: 1</p>
+                  <p>Gold: 200</p>
+                </li>
+              </ul>
+            </div>
+            <p>Hand (<span class="param handCount">_5</span>)</p>
+<!--
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-primary active">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1
+              </label>
+              <label class="btn btn-primary">
+                <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+              </label>
+              <label class="btn btn-primary">
+                <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+              </label>
+            </div>
+          </div> -->
+
+          <!-- http://getbootstrap.com/javascript/#collapse -->
+          <br>
+          <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#actions_pl1"
+          aria-expanded="false" aria-controls="collapseExample">
+            Actions
+          </button>
+
+          <div id="actions_pl1" class="actions collapse">
+            <p>Характеристики</p>
+            <button data-action="updateLevel" data-action-options="+1">Увеличить уровень +1</button>
+            <button data-action="updateLevel" data-action-options="-2">Уменьшить уровень -2</button>
+            <button data-action="setRace" data-action-options="dwarf">Изменить расу Дварф</button>
+            <button data-action="setCharClass" data-action-options="wizard">Изменить класс Wizard</button>
+            <button data-action="setSex" data-action-options="female">Изменить пол Жен</button>
+            <br>Интентарь<br>
+            <button data-action="addItem" data-action-item="item1">Взять вещь в руку</button>
+            <button data-action="wearItem" data-action-item="item1">Одеть вещь</button>
+            <button data-action="wearItem" data-action-item="item2">Одеть вещь Elf</button>
+
+            <button data-action="wearItem" data-action-item="item3">Одеть вещь Wizard</button>
+            <button data-action="wearItem" data-action-item="armor1">Одеть вещь Armor</button>
+            <button data-action="wearItem" data-action-item="hand1">Одеть вещь Hand</button>
+            <button data-action="wearItem" data-action-item="big1">Одеть вещь Big</button>
+            <button data-action="wearItem" data-action-item="bigHand1">Одеть вещь HandBig</button>
+            <button data-action="wearItem" data-action-item="twohand1">Одеть вещь TwoHand</button>
+
+            <br>Бой<br>
+            <button data-action="match" data-action-item="moster1">Сравнить силы с Monster 1</button>
+            <button data-action="match" data-action-item="moster2">Сравнить силы с Monster 2</button>
+            <button data-action="run" data-action-item="moster2">Попробовать убежать от Monster 2</button>
+            <button data-action="win" data-action-item="moster2">Победить Monster 2</button>
+          </div>
+
+
+
+<!--           <button onclick="player1.updateLevel(+1)">Увеличить уровень</button>
+          <button onclick="player1.getPower()">Посчитать мощь</button>
+          <button onclick="player1.addItem(item1)">Взять вещь в руку</button>
+          <button onclick="player1.wearItem(item1)">Одеть вещь</button>
+          <button onclick="player1.wearItem(item2)">Одеть вещь Elf</button>
+
+          <button onclick="player1.setRace('dwarf');">Изменить расу Дварф</button>
+          <button onclick="player1.setCharClass('wizard');">Изменить класс Wizard</button>
+          <button onclick="player1.setSex('female');">Изменить пол Жен</button>
+
+          <button onclick="player1.wearItem(item3)">Одеть вещь Wizard</button>
+          <button onclick="player1.wearItem(armor1)">Одеть вещь Armor</button>
+          <button onclick="player1.wearItem(hand1)">Одеть вещь Hand</button>
+          <button onclick="player1.wearItem(big1)">Одеть вещь Big</button>
+          <button onclick="player1.wearItem(bigHand1)">Одеть вещь HandBig</button>
+          <button onclick="player1.wearItem(twohand1)">Одеть вещь TwoHand</button>
+
+          <button onclick="player1.match(moster1)">Сравнить силы с Monster 1</button>
+          <button onclick="player1.match(moster2)">Сравнить силы с Monster 2</button>
+          <button onclick="player1.run(moster2)">Попробовать убежать от Monster 2</button>
+          <button onclick="player1.win(moster2)">Победить Monster 2</button>
+
+           -->
+        </div>
+
+        <div id="player2-holder" class="col-xs-6">
+        <!--
+          <div class="char">
+            <p>Name: <span class="param name">_Player 1</span></p>
+            <p>Race: <span class="param race">_Elf</span></p>
+            <p>Class: <span class="param charClass">_Warrior</span></p>
+            <p>Sex: <span class="param sex">_Male</span></p>
+            <p>Power (<span class="param power">_4</span>)</p>
+            <p>Level (<span class="param level">_1</span>)</p>
+            <p>Inventory (<span class="param inventoryCount">_3</span>)</p>
+            <p>Hand (<span class="param handCount">_5</span>)</p>
+          </div>
+
+          <div class="actions">
+            <p>Характеристики</p>
+            <button data-action="updateLevel" data-action-options="+1">Увеличить уровень +1</button>
+            <button data-action="updateLevel" data-action-options="-2">Уменьшить уровень -2</button>
+            <button data-action="setRace" data-action-options="dwarf">Изменить расу Дварф</button>
+            <button data-action="setCharClass" data-action-options="wizard">Изменить класс Wizard</button>
+            <button data-action="setSex" data-action-options="female">Изменить пол Жен</button>
+            <br>Интентарь<br>
+            <button data-action="addItem" data-action-item="item1">Взять вещь в руку</button>
+            <button data-action="wearItem" data-action-item="item1">Одеть вещь</button>
+            <button data-action="wearItem" data-action-item="item2">Одеть вещь Elf</button>
+
+            <button data-action="wearItem" data-action-item="item3">Одеть вещь Wizard</button>
+            <button data-action="wearItem" data-action-item="armor1">Одеть вещь Armor</button>
+            <button data-action="wearItem" data-action-item="hand1">Одеть вещь Hand</button>
+            <button data-action="wearItem" data-action-item="big1">Одеть вещь Big</button>
+            <button data-action="wearItem" data-action-item="bigHand1">Одеть вещь HandBig</button>
+            <button data-action="wearItem" data-action-item="twohand1">Одеть вещь TwoHand</button>
+
+            <br>Бой<br>
+            <button data-action="match" data-action-item="moster1">Сравнить силы с Monster 1</button>
+            <button data-action="match" data-action-item="moster2">Сравнить силы с Monster 2</button>
+            <button data-action="run" data-action-item="moster2">Попробовать убежать от Monster 2</button>
+            <button data-action="win" data-action-item="moster2">Победить Monster 2</button>
+          </div>
+        </div>
+        -->
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="vendor/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="items.js"></script>
+    <script src="script.js"></script>
+    <script src="init.js"></script>
+  </body>
+</html>
