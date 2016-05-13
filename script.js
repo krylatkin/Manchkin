@@ -13,7 +13,10 @@ function Player (par) {
     this.race = 'human';
     this.charClass = 'none';
     this.inventory = [];
+    //this.inventoryActive = -1;
     this.hand = [];
+    //this.handActive = -1;
+    this.active = {};
 
     this.render = function(){
         this.elem.querySelector('.name').textContent  = this.name;
@@ -24,67 +27,171 @@ function Player (par) {
         this.getPower(); //this.elem.querySelector('.power').innerText = this.power;
         this.elem.querySelector('.handCount').innerText = this.hand.length;
         this.elem.querySelector('.inventoryCount').innerText = this.inventory.length;
+        this.renderInventory();
+        this.renderHand();
     };
 
-    var self = this;
+    this.renderInventory = function(){
+        var items = this.inventory.map(function(item, index, array){
+            //var html =
+            return '<li class="item inventory-item" data-card="' + item.id + '" data-from="inventory">'
+                //+ '<p>Name: Name</p>'
+                + '<b>' + item.name + '</b>'
+                +' <p>Level: 1</p>'
+                +' <p>Power: ' + item.power + '</p>'
+                + '<p>Gold: ' + item.gold + '</p>'
+            +'</li>';
+            //return html;
+        });
+        console.log(items);
+        this.elem.querySelector('.inventory-list').innerHTML = items.join('');
+    };
+
+    this.renderHand = function(){
+        var items = this.hand.map(function(item, index, array){
+            return '<li class="item hand-item" data-card="' + item.id + '" data-from="hand">'
+            + '<b>' + item.name + '</b>'
+            +' <p>Level: 1</p>'
+            +' <p>Power: ' + item.power + '</p>'
+            + '<p>Gold: ' + item.gold + '</p>'
+            +'</li>';
+        });
+        console.log(items);
+        this.elem.querySelector('.hand-list').innerHTML = items.join('');
+    };
+
+
     // События
-    this.elem.onclick = function(event){
-        // console.log(event);
-        console.log(event.target);
-        // Actions
-        if (event.target.hasAttribute('data-action')) {
-            var action = event.target.getAttribute('data-action');
-            console.log(action);
-            if(typeof self[action] == "function") {
-                console.log("function");
-                if (event.target.hasAttribute('data-action-item')) {
-                    var actionItem = event.target.getAttribute('data-action-item');
-                    console.log(actionItem);
-                    console.log(window[actionItem]);
-                    self[action](window[actionItem]);
-                } else if (event.target.hasAttribute('data-action-options')) {
-                    var actionOptions = event.target.getAttribute('data-action-options');
-                    console.log(actionOptions);
-                    self[action](actionOptions);
-                } else {
-                    self[action]();
-                }
+    var self = this;
+
+    /*
+     this.elem.onclick = function(event){
+     console.log(event.target);
+
+     // Player Actions
+     if (event.target.closest('.player-actions')) {
+     doPlayerAction(event);
+     }
+
+     // Select card
+     if (event.target.closest('ul.card-list')) {
+     selectCard(event);
+     }
+
+     // Hand Actions
+     if (event.target.closest('.hand-actions')) {
+     doHandAction(event);
+     }
+
+     return false;
+     };
+     */
+
+    // https://davidwalsh.name/event-delegate
+    // Player Actions
+    this.elem.querySelector(".player-actions").addEventListener("click", function(event) {
+        doPlayerAction(event);
+    });
+
+    // Select card
+    [].forEach.call(this.elem.querySelectorAll("ul.card-list"), function(el){
+        el.addEventListener("click", function(event) {
+            selectCard(event);
+        });
+    });
+
+    // Hand Actions
+    this.elem.querySelector(".hand-actions").addEventListener("click", function(event) {
+        doHandAction(event);
+    });
+
+    function doHandAction (event){
+        console.log(event);
+        var action = event.target.getAttribute('data-action');
+        if (!action) return false;
+        console.log(action);
+        console.log(self.active);
+        switch (action) {
+            case 'itemDel':
+                alert('itemDel: ' + self.active['hand']);
+                //self.handDel(self.active['hand']);
+                self.hand.splice(self.active['hand'], 1);
+                self.renderHand();
+                break;
+            case 'itemWear':
+                alert('itemWear: ' + self.active['hand']);
+                break;
+            default:
+                alert('default');
+        }
+    }
+
+    function doPlayerAction (event){
+        var action = event.target.getAttribute('data-action');
+        if (!action) return false;
+        console.log(action);
+        if(typeof self[action] == "function") {
+            console.log("function");
+            if (event.target.hasAttribute('data-action-item')) {
+                var actionItem = event.target.getAttribute('data-action-item');
+                console.log(actionItem);
+                console.log(window[actionItem]);
+                self[action](window[actionItem]);
+            } else if (event.target.hasAttribute('data-action-options')) {
+                var actionOptions = event.target.getAttribute('data-action-options');
+                console.log(actionOptions);
+                self[action](actionOptions);
+            } else {
+                self[action]();
             }
         }
-        // Cards
-        console.log(this);
-        var iItem = event.target.closest('.inventory-item');
-        console.log(iItem);
-        if (iItem) {
-            // if (!td) return; // клик вне <td>, не интересует
-            if (iItem.hasAttribute('data-card')) {
-                var card = iItem.getAttribute('data-card');
-                console.log(card);
-                console.log(window[card]);
-                // Можно также определять по расположению в DOM closest('.inventory')
-                if (iItem.hasAttribute('data-from')) {
-                        var from = iItem.getAttribute('data-from');
-                        console.log(from);
-                }
+    }
 
-                var cards = self.elem.querySelectorAll('.inventory-item');
-                console.log(cards);
-                // https://css-tricks.com/snippets/javascript/loop-queryselectorall-matches/
-                // 1-ый вариант
-                // NodeList.prototype.forEach = Array.prototype.forEach;
-                // cards.forEach(function(currentValue, index, array){
-                // 	// currentValue.classList.remove('active');
-                // 	currentValue.className = currentValue.className.replace( /(?:^|\s)active(?!\S)/g , '' );
-                // });
+    function selectCard (event) {
+        //console.log(event);
+        var elCardList = event.target.closest('ul.card-list');
+        console.log(elCardList);
+        //var cardList = elCardList.hasAttribute('data-list') ? elCardList.getAttribute('data-list') : undefined;
+        var cardList = elCardList.getAttribute('data-list');
+        if (!cardList) return false;
 
-                [].forEach.call(cards, function(currentValue, index, array) {
-                    currentValue.className = currentValue.className.replace( /(?:^|\s)active(?!\S)/g , '' );
-                });
-                iItem.classList.add('active');
-                // iItem.className += " active";
-            }
+        // Определяем из какого списка карта
+        switch (cardList) {
+            case 'inventory':
+                select(cardList);
+                break;
+            case 'hand' :
+                select(cardList);
+                break;
+            default:
+                alert( 'default' );
+                return false;
         }
-    };
+
+        function select(cardList) {
+            console.log(cardList);
+            // Определяем э лемент карты
+            var elItem = event.target.closest('.item');
+            console.log(elItem);
+
+            // Определяем карту
+            //var card = elItem.hasAttribute('data-card') ? elItem.getAttribute('data-card') : undefined;
+            var card = elItem.getAttribute('data-card');
+            console.log(window[card]);
+
+            // Установка состояния активности
+            var elCards = elCardList.querySelectorAll('.item');
+            [].forEach.call(elCards, function(currentValue, index, array) {
+                currentValue.className = currentValue.className.replace( /(?:^|\s)active(?!\S)/g , '' );
+                if (currentValue == elItem) {
+                    console.log('active:  ', index);
+                    self.active[cardList] = index;
+                }
+            });
+            elItem.classList.add('active');
+            console.log(self.active);
+        }
+    }
 
     // Behavior
     // https://learn.javascript.ru/behavior
@@ -141,6 +248,7 @@ function Player (par) {
         this.hand.push(item);
         console.log(this.hand);
         this.elem.querySelector('.handCount').innerText = this.hand.length;
+        this.renderHand();
     };
     this.getHandCount = function(){
         this.elem.querySelector('.handCount').innerText = this.hand.length;
@@ -173,6 +281,7 @@ function Player (par) {
         }
         this.getPower();
         this.getInventoryCount();
+        this.renderInventory();
     };
     this.checkItemCondition = function(item){
         if (typeof item.condition === 'function') {

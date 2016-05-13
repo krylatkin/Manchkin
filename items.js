@@ -1,9 +1,11 @@
 var item1 = {
+    id: "item1",
 	name: "Item 1",
 	power: 2,
 	gold: 200
 };
 var item2 = {
+    id: "item2",
 	name: "Item 2",
 	power: 5,
 	gold: 200,
@@ -12,12 +14,13 @@ var item2 = {
 		if (player.race == 'elf') {
 			return true;			
 		} else {
-			console.log('Только для elf')
+			console.log('Только для elf');
 			return false;
 		}
 	}
 };
 var item3 = {
+    id: "item3",
 	name: "Item 3",
 	power: 15,
 	gold: 900,
@@ -26,65 +29,75 @@ var item3 = {
 		if (player.charClass == 'wizard') {
 			return true;			
 		} else {
-			console.log('Только для wizard')
+			console.log('Только для wizard');
 			return false;
 		}
 	}
 };
 var item4 = {
-	name: "Item 4",
+	id: "item4",
+    name: "Item 4",
 	power: 6,
 	gold: 700
 };
 var head1 = {
+    id: "head1",
 	name: "Head 1",
 	power: 2,
 	gold: 200,
 	slot: 'head'
 };
 var armor1 = {
+    id: "armor1",
 	name: "Armor 1",
 	power: 2,
 	gold: 200,
 	slot: 'armor'
 };
 var armor2 = {
+    id: "armor2",
 	name: "Armor 2",
 	power: 3,
 	gold: 200,
 	slot: 'armor'
 };
 var hand1 = {
+    id: "hand1",
 	name: "Hand 1",
 	power: 3,
 	gold: 200,
 	slot: 'hand'
 };
 var hand2 = {
+    id: "hand2",
 	name: "Hand 2",
 	power: 3,
 	gold: 200,
 	slot: 'hand'
 };
 var twohand1 = {
+    id: "twohand1",
 	name: "Twohand 1",
 	power: 3,
 	gold: 200,
 	slot: 'twohand'
 };
 var big1 = {
+    id: "head1",
 	name: "Big 1",
 	power: 3,
 	gold: 200,
 	big: true
 };
 var big2 = {
+    id: "big2",
 	name: "Big 2",
 	power: 3,
 	gold: 200,
 	big: true
 };
 var bigHand1 = {
+    id: "bigHand1",
 	name: "Big 	Hand 1",
 	power: 3,
 	gold: 200,
@@ -93,6 +106,7 @@ var bigHand1 = {
 };
 
 var moster1 = {
+    id: "moster1",
 	name: "Monster 1",
 	level: 2,
 	conditionalPower: function(player){
@@ -114,6 +128,7 @@ var moster1 = {
 	}
 };
 var moster2 = {
+    id: "moster2",
 	name: "Monster 2",
 	level: 13,
 	conditionalPower: function(player){

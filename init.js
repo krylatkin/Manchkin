@@ -3,13 +3,22 @@ player1 = new Player({name: "PL1", elem:"#player1-holder"});
 // player1.render();
 console.log(player1);
 player1.updateLevel(2);
+player1.wearItem(item1);
+player1.wearItem(item1);
+player1.wearItem(item4);
+player1.addItem(item1);
+player1.addItem(item2);
+//player1.renderInventory();
+//player1.renderHand();
 
 
+/*
 player2 = new Player({name: "PL2", elem:"#player2-holder"});
 player2.wearItem(item1);
 player2.getPower();
 player2.wearItem(item2);
 player2.wearItem(item4);
+*/
 
 /*
 //console.log(player1);

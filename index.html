@@ -43,28 +43,42 @@
             <p>Level (<span class="param level">_1</span>)</p>
             <p>Inventory (<span class="param inventoryCount">_3</span>)</p>
             <div class="inventory">
-              <ul class="inventory-list">
-                <li class="inventory-item" data-card="item1" data-from="inventory">
-                  <p>Name: Name</p>
-                  <p>Level: 1</p>
-                  <p>Power: 1</p>
-                  <p>Gold: 200</p>
-                </li>
-                <li class="inventory-item active" data-card="item2" data-from="inventory">
-                  <p>Name: Name</p>
-                  <p>Level: 1</p>
-                  <p>Power: 1</p>
-                  <p>Gold: 200</p>
-                </li>
-                <li class="inventory-item" data-card="item3" data-from="inventory">
-                  <p>Name: Name</p>
-                  <p>Level: 1</p>
-                  <p>Power: 1</p>
-                  <p>Gold: 200</p>
-                </li>
+              <ul class="inventory-list card-list" data-list="inventory">
+                <!--<li class="inventory-item" data-card="item1" data-from="inventory">-->
+                  <!--<p>Name: Name</p>-->
+                  <!--<p>Level: 1</p>-->
+                  <!--<p>Power: 1</p>-->
+                  <!--<p>Gold: 200</p>-->
+                <!--</li>-->
+                <!--<li class="inventory-item active" data-card="item2" data-from="inventory">-->
+                  <!--<p>Name: Name</p>-->
+                  <!--<p>Level: 1</p>-->
+                  <!--<p>Power: 1</p>-->
+                  <!--<p>Gold: 200</p>-->
+                <!--</li>-->
+                <!--<li class="inventory-item" data-card="item3" data-from="inventory">-->
+                  <!--<p>Name: Name</p>-->
+                  <!--<p>Level: 1</p>-->
+                  <!--<p>Power: 1</p>-->
+                  <!--<p>Gold: 200</p>-->
+                <!--</li>-->
               </ul>
             </div>
             <p>Hand (<span class="param handCount">_5</span>)</p>
+              <div class="hand">
+                  <ul class="hand-list card-list" data-list="hand">
+                      <!--<li class="hand-item" data-card="item1" data-from="hand">-->
+                          <!--<p>Name: Name</p>-->
+                          <!--<p>Level: 1</p>-->
+                          <!--<p>Power: 1</p>-->
+                          <!--<p>Gold: 200</p>-->
+                      <!--</li>-->
+                  </ul>
+                  <div class="hand-actions">
+                      <button data-action="itemDel">itemDel</button>
+                      <button data-action="itemWear">itemWear</button>
+                  </div>
+              </div>
 <!--
             <div class="btn-group" data-toggle="buttons">
               <label class="btn btn-primary active">
@@ -86,7 +100,7 @@
             Actions
           </button>
 
-          <div id="actions_pl1" class="actions collapse">
+          <div id="actions_pl1" class="player-actions "> <!-- collapse-->
             <p>Характеристики</p>
             <button data-action="updateLevel" data-action-options="+1">Увеличить уровень +1</button>
             <button data-action="updateLevel" data-action-options="-2">Уменьшить уровень -2</button>
@@ -94,6 +108,8 @@
             <button data-action="setCharClass" data-action-options="wizard">Изменить класс Wizard</button>
             <button data-action="setSex" data-action-options="female">Изменить пол Жен</button>
             <br>Интентарь<br>
+              <button data-action="renderInventory">renderInventory</button>
+              <button data-action="renderHand">renderHand</button>
             <button data-action="addItem" data-action-item="item1">Взять вещь в руку</button>
             <button data-action="wearItem" data-action-item="item1">Одеть вещь</button>
             <button data-action="wearItem" data-action-item="item2">Одеть вещь Elf</button>

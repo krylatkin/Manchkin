@@ -1,14 +1,19 @@
+/* Char */
 .param {
 	font-weight: bold;
 }
-ul.inventory-list {
+/* Card */
+ul.card-list {
 	padding: 0px;
 }
-.inventory-item {
-	display: inline-block;
-	border: 1px solid black;
-	cursor: pointer;
+ul.card-list  .item {
+    display: inline-block;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 70px;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
-.inventory-item.active {
+ul.card-list  .item.active {
 	border: 2px solid blue;
 }
