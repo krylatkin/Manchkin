@@ -42,28 +42,6 @@ function Player (par) {
         }
     }
 
-    function selectCard (event) {
-        //console.log(event);
-        var elCardList = event.target.closest('ul.card-list');
-        console.log(elCardList);
-        //var cardList = elCardList.hasAttribute('data-list') ? elCardList.getAttribute('data-list') : undefined;
-        var cardList = elCardList.getAttribute('data-list');
-        if (!cardList) return false;
-
-        // Определяем из какого списка карта
-        switch (cardList) {
-            case 'inventory':
-                self.inventoryCl.select(event, elCardList, cardList);
-                break;
-            case 'hand' :
-                self.handCl.select(event, elCardList, cardList);
-                break;
-            default:
-                alert( 'default' );
-                return false;
-        }
-    }
-
     // Инвентарь
     this.addItem = function(item){
         this.handCl.add(item);
@@ -138,7 +116,6 @@ function Player (par) {
 
     // События
     function bindEvents() {
-        //var self = this;
 
         this.elem.onclick = function (event) {
             console.log(event.target);
@@ -150,7 +127,7 @@ function Player (par) {
 
             // Select card
             if (event.target.closest('ul.card-list')) {
-                selectCard(event);
+                self.handCl.selectCard(event);
             }
 
             // Hand Actions

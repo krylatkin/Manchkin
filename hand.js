@@ -37,6 +37,28 @@ Hand.prototype.length = function(){
     return this.hand.length;
 };
 
+Hand.prototype.selectCard = function (event) {
+    //console.log(event);
+    var elCardList = event.target.closest('ul.card-list');
+    console.log(elCardList);
+    //var cardList = elCardList.hasAttribute('data-list') ? elCardList.getAttribute('data-list') : undefined;
+    var cardList = elCardList.getAttribute('data-list');
+    if (!cardList) return false;
+
+    // Определяем из какого списка карта
+    switch (cardList) {
+        case 'inventory':
+            this.player.inventoryCl.select(event, elCardList, cardList);
+            break;
+        case 'hand' :
+            this.player.handCl.select(event, elCardList, cardList);
+            break;
+        default:
+            alert( 'default' );
+            return false;
+    }
+};
+
 Hand.prototype.select = function(event, elCardList, cardList){
     var self = this;
 
