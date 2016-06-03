@@ -9,6 +9,7 @@ function Player (par) {
     this.char = new Char(this, par);
     this.inventoryCl = new Inventory(this);
     this.handCl = new Hand(this);
+    this.battle = new Battle(this);
 
     this.render = function(){
         this.char.render();
@@ -58,32 +59,6 @@ function Player (par) {
         this.inventoryCl.renderHand();
     };
 
-    // Бой
-    this.match = function(monster){
-        var monsterPower = monster.level + monster.conditionalPower(this);
-        var playerPower = this.getPower();
-        console.log('match', monsterPower + ' vs ' + playerPower );
-        if (this.charClass == 'warrior' ? playerPower >= monsterPower : playerPower > monsterPower ) {
-            console.log('Побеждаем');
-            return true;
-        } else {
-            console.log('Проигрываем');
-            return false;
-        }
-    };
-    this.run = function(monster){
-        if (monster.canRun(this)) {
-            console.log('Можно не атаковать');
-            return true;
-        }
-    };
-    this.win = function(moster){
-        if (this.match(moster)) {
-            this.updateLevel(moster.win.level);
-            // Получить кол-во win.treasure
-        }
-    };
-
 
     // Для тестов
     this.getInventoryCount = function(){
@@ -112,6 +87,17 @@ function Player (par) {
     };
     this.setSex = function(sex){
         return this.char.setSex(sex);
+    };
+
+    // Бой для тестов
+    this.match = function(monster){
+        return this.battle.match(monster);
+    };
+    this.run = function(monster){
+        this.battle.run(monster);
+    };
+    this.win = function(monster){
+        this.battle.win(monster);
     };
 
     // События

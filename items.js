@@ -105,8 +105,8 @@ var bigHand1 = {
 	big: true
 };
 
-var moster1 = {
-    id: "moster1",
+var monster1 = {
+    id: "monster1",
 	name: "Monster 1",
 	level: 2,
 	conditionalPower: function(player){
@@ -127,8 +127,8 @@ var moster1 = {
 		player.updateLevel(-1);
 	}
 };
-var moster2 = {
-    id: "moster2",
+var monster2 = {
+    id: "monster2",
 	name: "Monster 2",
 	level: 13,
 	conditionalPower: function(player){

@@ -195,37 +195,31 @@ var player1;
 
 		});
 
-
-
-		// player2 = new Player({name: "PL2"});
-		// player2.match(moster1);
-		// player1.match(moster1);
-
 	});
 
 	describe("Сражение с монстром", function() {
 		player2 = new Player({name: "PL2", elem:"#player2-holder"});
 
 		it("Сравнить Player2 силы с Monster 1. Уровень 1 без шмота. Не справимся", function() {
-			assert.equal(player2.match(moster1), false);
+			assert.equal(player2.match(monster1), false);
 		});
 		it("Сравнить Player2 силы с Monster 1. Оденем и попробуем еще.", function() {
 			player2.wearItem(item4);
-			assert.equal(player2.match(moster1), true);
+			assert.equal(player2.match(monster1), true);
 		});
 		it("Сравнить Player1 силы с Monster 1", function() {
-			assert.equal(player1.match(moster1), true);
+			assert.equal(player1.match(monster1), true);
 		});
 		it("Сравнить Player1 силы с Monster 2", function() {
-			assert.equal(player1.match(moster1), true);
+			assert.equal(player1.match(monster1), true);
 		});
 		it("Победить Monster 2", function() {
-			player1.win(moster1);
-			assert.equal(player1.level, 5);
+			player1.win(monster1);
+			assert.equal(player1.char.level, 5);
 			// Получить кол-во win.treasure
 		});
 		it("Победить Monster 2. Player2 не справиться.", function() {
-			player2.win(moster2);
-			assert.equal(player2.level, 1);
+			player2.win(monster2);
+			assert.equal(player2.char.level, 1);
 		});
 	});
