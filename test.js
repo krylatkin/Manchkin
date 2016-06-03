@@ -9,7 +9,7 @@ var player1;
 		// afterEach(function() { alert("Выход из теста"); });
 
 		it("Создание игрока", function() {
-			player1 = new Player({name: "PL1", sex: "male", elem:"#player1-holder"});
+			player1 = new App.Player({name: "PL1", sex: "male", elem:"#player1-holder"});
 			assert.equal(player1.char.name, 'PL1');
 			assert.equal(player1.char.sex, 'male');
 			assert.equal(player1.char.race, 'human');
@@ -198,7 +198,7 @@ var player1;
 	});
 
 	describe("Сражение с монстром", function() {
-		player2 = new Player({name: "PL2", elem:"#player2-holder"});
+		player2 = new App.Player({name: "PL2", elem:"#player2-holder"});
 
 		it("Сравнить Player2 силы с Monster 1. Уровень 1 без шмота. Не справимся", function() {
 			assert.equal(player2.match(monster1), false);
