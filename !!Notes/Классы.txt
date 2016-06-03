@@ -1,7 +1,23 @@
-1. Player
+0. Player
+Events
+selectCard
+doPlayerAction
+
+new Char
+new Hand
+new Inventory
 render
-this.hand = new Hand();
-inventory = new Inventory();
+
+1. Char
+render
+updateLevel,
+setRace
+getPower
+
+1. Battle
+match
+run
+win
 
 2. Hand
 renderHand
@@ -18,6 +34,12 @@ doInventoryAction
 selectCard
 
 4. Item / Card
-
-
-
+Наследование Cards
+this.cards = {};
+length
+add
+this.active
+selectCard
+select
+render ?
+doHandAction ?
