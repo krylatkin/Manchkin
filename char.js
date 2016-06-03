@@ -1,15 +1,12 @@
 function Char (player, par){
     this.player = player;
 
-    //alert('char');
-
     // Характеристики
     this.name = par.name || "Player";
     this.sex = par.sex || "male";
     this.level = 1;
     this.race = 'human';
     this.charClass = 'none';
-
 }
 
 Char.prototype.render = function(){

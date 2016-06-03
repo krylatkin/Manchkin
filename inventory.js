@@ -1,17 +1,15 @@
 function Inventory (player){
-    this.player = player;
-    this.hand = []; // this.cards = [];
-    // Активная карта
-    this.active = undefined;
-    //alert('inventory');
-
-    //var self = this;
+    Card.apply(this, arguments);
 }
+
+// Наследование от Card
+Inventory.prototype = Object.create(Card.prototype);
+Inventory.prototype.constructor = Inventory;
 
 Inventory.prototype.renderHand = function(){
     var self = this;
 
-    var items = this.hand.map(function(item, index, array){
+    var items = this.cards.map(function(item, index, array){
 
         // Помечаем активную карту
         var stateClass = (index == self.active) ? ' active' : '';
@@ -25,52 +23,14 @@ Inventory.prototype.renderHand = function(){
     });
 
     console.log(items);
-
-    console.log(this);
     this.player.elem.querySelector('.inventory-list').innerHTML = items.join('');
     this.player.elem.querySelector('.inventoryCount').innerText = this.length();
-};
-
-Inventory.prototype.add = function(item){
-    this.hand.push(item);
-};
-
-Inventory.prototype.length = function(){
-    return this.hand.length;
-};
-
-Inventory.prototype.select = function(event, elCardList, cardList){
-    var self = this;
-
-    console.log(cardList);
-    // Определяем элемент карты
-    var elItem = event.target.closest('.item');
-    console.log(elItem);
-
-    // Определяем карту
-    //var card = elItem.hasAttribute('data-card') ? elItem.getAttribute('data-card') : undefined;
-    var card = elItem.getAttribute('data-card');
-    console.log(window[card]);
-
-    // Установка состояния активности
-    var elCards = elCardList.querySelectorAll('.item');
-    [].forEach.call(elCards, function(currentValue, index, array) {
-        currentValue.className = currentValue.className.replace( /(?:^|\s)active(?!\S)/g , '' );
-        if (currentValue == elItem) {
-            console.log('active:  ', index);
-            //self.active[cardList] = index;
-            console.log(self);
-            self.active = index;
-        }
-    });
-    elItem.classList.add('active');
-    console.log(self.active);
 };
 
 Inventory.prototype.getPower = function(){
     // Суммируем все power от вещей в this.inventory
     var power = 0;
-    this.hand.forEach(function(currentValue, index, array){
+    this.cards.forEach(function(currentValue, index, array){
         if (currentValue.power) {
             power += currentValue.power;
         }
@@ -106,7 +66,7 @@ Inventory.prototype.checkSlot = function(item){
 
         var handSlots = 0;
         // Перебираем player1.inventory на наличие slot == item.slot
-        var notEmptySlot = this.hand.some(function(currentValue, index, array){
+        var notEmptySlot = this.cards.some(function(currentValue, index, array){
             if (currentValue.slot == 'hand' || currentValue.slot == 'twohand' ) {
                 handSlots += item.slot == 'hand' ? 1 : 0;
                 handSlots += item.slot == 'twohand' ? 2 : 0;
@@ -141,12 +101,12 @@ Inventory.prototype.checkBigItem = function(item){
 
         // Перебираем player1.inventory на наличие  item.big == true
         var bigIndex;
-        var hasBigItem = this.hand.some(function(currentValue, index, array){
+        var hasBigItem = this.cards.some(function(currentValue, index, array){
             bigIndex = index;
             return currentValue.big;
         });
         if (hasBigItem) {
-            console.log('Уже есть большая шмотка', bigIndex, this.hand[bigIndex]);
+            console.log('Уже есть большая шмотка', bigIndex, this.cards[bigIndex]);
             return false;
         } else {
             console.log('Больших шмоток еще не надето');
@@ -166,7 +126,7 @@ Inventory.prototype.removeSlot = function(slot){
 
 Inventory.prototype.clearInventory = function(){
     console.log('Удаляем все из инвенторя');
-    this.hand = [];
+    this.cards = [];
     this.renderHand();
 };
 

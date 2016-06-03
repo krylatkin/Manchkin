@@ -1,17 +1,17 @@
 function Hand (player){
-    this.player = player;
-    this.hand = []; // this.cards = [];
-    // Активная карта
-    this.active = undefined;
-    //alert('hand');
-
-    //var self = this;
+    Card.apply(this, arguments); // Вызываем конструктор родителя с такими же параметрами
+    //Card.call(this, player); // call the super class constructor
 }
+
+// Наследование от Card
+//Hand.prototype = new Card();  //  Неправильное наследование! Создает объект через конструктор, неправильная инициализация
+Hand.prototype = Object.create(Card.prototype); // Правильное наследование! Копирует методы из прототипа
+Hand.prototype.constructor = Hand;
 
 Hand.prototype.renderHand = function(){
     var self = this;
 
-    var items = this.hand.map(function(item, index, array){
+    var items = this.cards.map(function(item, index, array){
 
         // Помечаем активную карту
         var stateClass = (index == self.active) ? ' active' : '';
@@ -29,64 +29,6 @@ Hand.prototype.renderHand = function(){
     this.player.elem.querySelector('.handCount').innerText = this.length();
 };
 
-Hand.prototype.add = function(item){
-    this.hand.push(item);
-};
-
-Hand.prototype.length = function(){
-    return this.hand.length;
-};
-
-Hand.prototype.selectCard = function (event) {
-    //console.log(event);
-    var elCardList = event.target.closest('ul.card-list');
-    console.log(elCardList);
-    //var cardList = elCardList.hasAttribute('data-list') ? elCardList.getAttribute('data-list') : undefined;
-    var cardList = elCardList.getAttribute('data-list');
-    if (!cardList) return false;
-
-    // Определяем из какого списка карта
-    switch (cardList) {
-        case 'inventory':
-            this.player.inventoryCl.select(event, elCardList, cardList);
-            break;
-        case 'hand' :
-            this.player.handCl.select(event, elCardList, cardList);
-            break;
-        default:
-            alert( 'default' );
-            return false;
-    }
-};
-
-Hand.prototype.select = function(event, elCardList, cardList){
-    var self = this;
-
-    console.log(cardList);
-    // Определяем элемент карты
-    var elItem = event.target.closest('.item');
-    console.log(elItem);
-
-    // Определяем карту
-    //var card = elItem.hasAttribute('data-card') ? elItem.getAttribute('data-card') : undefined;
-    var card = elItem.getAttribute('data-card');
-    console.log(window[card]);
-
-    // Установка состояния активности
-    var elCards = elCardList.querySelectorAll('.item');
-    [].forEach.call(elCards, function(currentValue, index, array) {
-        currentValue.className = currentValue.className.replace( /(?:^|\s)active(?!\S)/g , '' );
-        if (currentValue == elItem) {
-            console.log('active:  ', index);
-            //self.active[cardList] = index;
-            console.log(self);
-            self.active = index;
-        }
-    });
-    elItem.classList.add('active');
-    console.log(self.active);
-};
-
 Hand.prototype.doHandAction = function(event){
     console.log(event);
     var action = event.target.getAttribute('data-action');
@@ -95,10 +37,7 @@ Hand.prototype.doHandAction = function(event){
     console.log(this.active);
     switch (action) {
         case 'itemDel':
-            alert('itemDel: ' + this.active);
-            this.hand.splice(this.active, 1);
-            this.active = undefined;
-            this.renderHand();
+            this.deleteCard(this.active);
             break;
         case 'itemWear':
             alert('itemWear: ' + this.active);
