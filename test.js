@@ -10,10 +10,10 @@ var player1;
 
 		it("Создание игрока", function() {
 			player1 = new Player({name: "PL1", sex: "male", elem:"#player1-holder"});
-			assert.equal(player1.name, 'PL1');
-			assert.equal(player1.sex, 'male');
-			assert.equal(player1.race, 'human');
-			assert.equal(player1.charClass, 'none');
+			assert.equal(player1.char.name, 'PL1');
+			assert.equal(player1.char.sex, 'male');
+			assert.equal(player1.char.race, 'human');
+			assert.equal(player1.char.charClass, 'none');
 		});
 
 		it("Измение расы", function() {
@@ -32,7 +32,7 @@ var player1;
 	describe("Уровень", function() {
 
 		it("Узнать уровень", function() {
-			assert.equal(player1.level, 1);
+			assert.equal(player1.char.level, 1);
 		});
 
 		it("Измение уровня на 2", function() {
@@ -146,7 +146,7 @@ var player1;
 			it("Очищаем весь инвентарь", function() {
 				player1.clearInventory();
 				assert.equal(player1.getInventoryCount(), 0);
-				assert.equal(player1.getPower(), player1.level);
+				assert.equal(player1.getPower(), player1.char.level);
 			});
 			it("Одеваем одноручное оружие", function() {
 				player1.wearItem(hand1);
@@ -167,7 +167,7 @@ var player1;
 			it("Очищаем весь инвентарь", function() {
 				player1.clearInventory();
 				assert.equal(player1.getInventoryCount(), 0);
-				assert.equal(player1.getPower(), player1.level);
+				assert.equal(player1.getPower(), player1.char.level);
 			});
 			it("Одеваем двуручное оружие", function() {
 				player1.wearItem(twohand1);
@@ -182,7 +182,7 @@ var player1;
 			it("Очищаем весь инвентарь", function() {
 				player1.clearInventory();
 				assert.equal(player1.getInventoryCount(), 0);
-				assert.equal(player1.getPower(), player1.level);
+				assert.equal(player1.getPower(), player1.char.level);
 			});
 			it("Одеваем одноручное оружие", function() {
 				player1.wearItem(hand1);

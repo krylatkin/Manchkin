@@ -76,7 +76,7 @@ Inventory.prototype.getPower = function(){
         }
     });
     console.log('power  ', power);
-    //this.elem.querySelector('.power').innerText = power;
+    this.player.elem.querySelector('.power').innerText = power;
     return power;
 };
 
@@ -87,7 +87,7 @@ Inventory.prototype.tryToWear = function(item){
 Inventory.prototype.checkItemCondition = function(item){
     if (typeof item.condition === 'function') {
         console.log('Есть условия на шмотку');
-        if ( item.condition(this.player) ) {
+        if ( item.condition(this.player.char) ) {
             console.log('Условия пройдены. Нам подходит!');
             return true;
         } else {
@@ -134,7 +134,7 @@ Inventory.prototype.checkSlot = function(item){
 Inventory.prototype.checkBigItem = function(item){
     if (item.big) {
         console.log('Большая шмотка. Нужна проверка.');
-        if (this.player.race == 'dwarf') {
+        if (this.player.char.race == 'dwarf') {
             console.log('checkBigItem  ', 'Dwarf может одевать неограниченное кол-во больших шмоток');
             return true;
         }

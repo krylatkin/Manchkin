@@ -1,0 +1,76 @@
+https://www.stevefenton.co.uk/2013/12/javascript-prototype-vs-revealing-module-pattern/
+
+
+http://plnkr.co/edit/?p=preview
+1 вариант CLOSURE EXAMPLE INHERITANCE
+// Code goes here
+var Customer = function (name) {
+    return {
+        greet: function () {
+            return name + ' says hi!';
+        }
+    };
+};
+var VipCustomer = function (name, discountPercentage) {
+    var parent = Customer(name);
+    return {
+        greet: parent.greet
+    }
+};
+
+var steve = new Customer('Steve');
+var todd = new VipCustomer('Todd', 10);
+
+console.log(steve.greet()); // Steve says hi!
+console.log(todd.greet()); // Todd says hi!
+console.log(todd.name); // undefined
+console.log(steve.name); // undefined
+
+
+2 вариант REVEALING MODULE PATTERN
+// Code goes here
+
+var Fenton = (function () {
+    function Customer(name) {
+        this.age = age || 10;
+        this.name = name;
+    }
+    Customer.prototype = {
+        constructor: Customer,
+        greet: function () {
+            return this.name + ' says hi! ' + this.age;
+        }
+    };
+    function VipCustomer(name, discountPercentage) {
+        this.age = 22;
+        Customer.call(this, name, this.age);
+        this.discountPercentage = discountPercentage;
+    }
+    VipCustomer.prototype = new Customer();
+    VipCustomer.prototype.constructor = VipCustomer;
+   
+    return {
+        Customer: Customer,
+        VipCustomer: VipCustomer
+    };
+}());
+var steve = new Fenton.Customer('Steve');
+var todd = new Fenton.VipCustomer('Todd', 10);
+
+console.log(steve.greet()); // Steve says hi!
+console.log(todd.greet()); // Todd says hi!
+console.log(todd.name); // Todd
+console.log(steve.name); // Steve
+console.log(steve.age); // Steve
+
+
+
+JavaScript: особенности инкапсуляции на основе замыканий. Часть 4: Наследование
+http://se-la-vy.blogspot.ru/2009/04/javascript-4.html
+
+
+Организация js кода для джуниоров
+https://habrahabr.ru/post/218485/
+
+Javascript: ООП, прототипы, замыкания, «класс» Timer.js
+https://habrahabr.ru/post/144646/

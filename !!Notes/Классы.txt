@@ -1,0 +1,23 @@
+1. Player
+render
+this.hand = new Hand();
+inventory = new Inventory();
+
+2. Hand
+renderHand
+this.hand = [];
+//this.handActive = -1;
+doHandAction
+selectCard
+
+3. Inventory
+this.inventory = [];
+renderInventory
+//this.inventoryActive = -1;
+doInventoryAction
+selectCard
+
+4. Item / Card
+
+
+

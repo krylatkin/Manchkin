@@ -1,0 +1,27 @@
+
+
+
+1. Раcширение функционала модуля из другого файла
+https://toddmotto.com/mastering-the-module-pattern/
+
+var ModuleTwo = (function (Module) {
+
+    Module.extension = function () {
+        // another method!
+    };
+
+    return Module;
+
+})(Module || {});
+
+Private Naming Conventions
+var _privateMethod = function () {
+
+
+2. Using Method Chaining. Reveal the public API.
+http://www.bennadel.com/blog/2798-using-method-chaining-with-the-revealing-module-pattern-in-javascript.htm
+
+
+3. REVEALING MODULE PATTERN
+MODULE PATTERN + Prototype Inheritance
+https://www.stevefenton.co.uk/2013/12/javascript-prototype-vs-revealing-module-pattern/

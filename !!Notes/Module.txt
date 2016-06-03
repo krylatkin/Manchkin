@@ -1,0 +1,23 @@
+Javascript: Module Pattern vs Constructor/Prototype pattern?
+new MyNamespace.MyModule.MyClass(arguments)
+http://stackoverflow.com/questions/3790909/javascript-module-pattern-vs-constructor-prototype-pattern
+
+Наследование
+http://stackoverflow.com/questions/1595611/how-to-properly-create-a-custom-object-in-javascript
+
+
+Javascript Folding Pattern
+http://intrepidis.blogspot.ru/2013/04/javascript-folding-pattern.html
+
+Use of 'prototype' vs. 'this' in JavaScript?
+http://stackoverflow.com/questions/310870/use-of-prototype-vs-this-in-javascript
+A reason to use the first form is to access "private members". For example:
+
+Javascript: ООП, прототипы, замыкания, «класс» Timer.js
+https://habrahabr.ru/post/144646/
+
+OOP in JS, Part 1 : Public/Private Variables and Methods
+http://phrogz.net/js/classes/OOPinJS.html
+
+Организация js кода для джуниоров
+https://habrahabr.ru/post/218485/
