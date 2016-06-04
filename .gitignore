@@ -1,1 +1,8 @@
 .idea/
+/js/*.map
+/js/battle.js
+/js/card.js
+/js/char.js
+/js/inventory.js
+/js/player.js
+/js/hand.js
