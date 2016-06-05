@@ -1,6 +1,7 @@
+///<reference path='player.ts'/>
 module App {
     export class Char {
-        player
+        player: Player;
 
         // Характеристики
         name: string;
@@ -18,10 +19,10 @@ module App {
 
         render(): void {
             this.player.elem.querySelector('.name').textContent  = this.name;
-            this.player.elem.querySelector('.level').textContent  = this.level;
-            this.player.elem.querySelector('.race').innerText = this.race;
-            this.player.elem.querySelector('.charClass').innerText = this.charClass;
-            this.player.elem.querySelector('.sex').innerText = this.sex;
+            this.player.elem.querySelector('.level').textContent  = ''+this.level;
+            this.player.elem.querySelector('.race').textContent = this.race;
+            this.player.elem.querySelector('.charClass').textContent = this.charClass;
+            this.player.elem.querySelector('.sex').textContent = this.sex;
 
             this.getPower(); //this.elem.querySelector('.power').innerText = this.power;
             //this.inventoryCl.renderHand();
@@ -33,7 +34,7 @@ module App {
             this.level = (this.level > 0) ? this.level : 1;
             console.log('Уровень изменен с ' + old + ' на ' + this.level);
             console.log(this);
-            this.player.elem.querySelector('.level').innerText = this.level;
+            this.player.elem.querySelector('.level').textContent = ''+this.level;
             this.getPower();
             return this;
         }
@@ -44,7 +45,7 @@ module App {
             this.race = race;
             console.log('Раса изменена с ' + old + ' на ' + this.race);
             console.log(this);
-            this.player.elem.querySelector('.race').innerText = this.race;
+            this.player.elem.querySelector('.race').textContent = this.race;
             return this;
         }
         setCharClass(charClass){
@@ -52,7 +53,7 @@ module App {
             this.charClass = charClass;
             console.log('Класс изменен с ' + old + ' на ' + this.charClass);
             console.log(this);
-            this.player.elem.querySelector('.charClass').innerText = this.charClass;
+            this.player.elem.querySelector('.charClass').textContent = this.charClass;
             return this;
         }
         setSex(sex){
@@ -60,13 +61,13 @@ module App {
             this.sex = sex;
             console.log('Пол изменен с ' + old + ' на ' + this.sex);
             console.log(this);
-            this.player.elem.querySelector('.sex').innerText = this.sex;
+            this.player.elem.querySelector('.sex').textContent = this.sex;
             return this;
         }
         getPower(): number {
             var power = this.level + this.player.inventoryCl.getPower();
             console.log('power  ', power);
-            this.player.elem.querySelector('.power').innerText = power;
+            this.player.elem.querySelector('.power').textContent = ''+power;
             return power;
         }
 

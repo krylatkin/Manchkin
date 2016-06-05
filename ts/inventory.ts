@@ -23,7 +23,7 @@ module App {
 
             console.log(items);
             this.player.elem.querySelector('.inventory-list').innerHTML = items.join('');
-            this.player.elem.querySelector('.inventoryCount').innerText = this.length();
+            this.player.elem.querySelector('.inventoryCount').textContent = ''+this.length();
         }
         getPower(): number {
             // Суммируем все power от вещей в this.inventory
@@ -34,7 +34,7 @@ module App {
                 }
             });
             console.log('power  ', power);
-            this.player.elem.querySelector('.power').innerText = power;
+            this.player.elem.querySelector('.power').textContent = ''+power;
             return power;
         }
         tryToWear(item): boolean {

@@ -4,12 +4,12 @@
 ///<reference path='char.ts'/>
 module App {
     export class Player {
-        elem: any;
+        elem: Element;
 
-        char
-        inventoryCl
-        handCl
-        battle
+        char: Char;
+        inventoryCl: Inventory;
+        handCl: Hand;
+        battle: Battle;
 
         constructor(par) {
             // DOM

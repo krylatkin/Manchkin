@@ -23,7 +23,7 @@ module App {
 
             console.log(items);
             this.player.elem.querySelector('.hand-list').innerHTML = items.join('');
-            this.player.elem.querySelector('.handCount').innerText = this.length();
+            this.player.elem.querySelector('.handCount').textContent = ''+this.length();
         }
         doHandAction(event){
             console.log(event);

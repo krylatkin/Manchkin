@@ -1,6 +1,7 @@
+///<reference path='player.ts'/>
 module App {
     export class Battle {
-        player:any;
+        player: Player;
 
         constructor(player:any) {
             this.player = player;

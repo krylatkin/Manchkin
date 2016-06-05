@@ -1,6 +1,7 @@
+///<reference path='player.ts'/>
 module App {
     export class Card {
-        player: any;
+        player: Player;
         cards: any[] = [];
         active: number = undefined; // Активная карта
 
