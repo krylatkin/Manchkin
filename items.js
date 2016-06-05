@@ -9,9 +9,9 @@ var item2 = {
 	name: "Item 2",
 	power: 5,
 	gold: 200,
-	condition: function (player) {
-		// console.log(player);
-		if (player.race == 'elf') {
+	condition: function (char) {
+		// console.log(char);
+		if (char.race == 'elf') {
 			return true;			
 		} else {
 			console.log('Только для elf');
@@ -24,9 +24,9 @@ var item3 = {
 	name: "Item 3",
 	power: 15,
 	gold: 900,
-	condition: function (player) {
-		// console.log(player);
-		if (player.charClass == 'wizard') {
+	condition: function (char) {
+		// console.log(char);
+		if (char.charClass == 'wizard') {
 			return true;			
 		} else {
 			console.log('Только для wizard');
@@ -109,33 +109,33 @@ var monster1 = {
     id: "monster1",
 	name: "Monster 1",
 	level: 2,
-	conditionalPower: function(player){
-		if (player.race == 'elf') {
+	conditionalPower: function(char){
+		if (char.race == 'elf') {
 			console.log('Против elf сила на 6 больше');
 			return 6;
 		}
 		return 0
 	},
-	canRun: function(player){
+	canRun: function(char){
 
 	},
 	win: {
 		level : 2,
 		treasure: 2
 	},
-	lose: function (player){
-		player.updateLevel(-1);
+	lose: function (char){
+        char.updateLevel(-1);
 	}
 };
 var monster2 = {
     id: "monster2",
 	name: "Monster 2",
 	level: 13,
-	conditionalPower: function(player){
+	conditionalPower: function(char){
 		return 0
 	},
-	canRun: function(player){
-		if (player.level < 5) {
+	canRun: function(char){
+		if (char.level < 5) {
 			console.log('Монстр не преследует персонажей меньше 5 уровня');
 			return true;
 		}
@@ -144,7 +144,7 @@ var monster2 = {
 		level : 2,
 		treasure: 2
 	},
-	lose: function (player){
-		player.updateLevel(-1);
+	lose: function (char){
+        char.updateLevel(-1);
 	}
 };

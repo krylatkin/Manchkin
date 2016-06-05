@@ -1,14 +1,14 @@
 ///<reference path='card.ts'/>
 module App {
     export class Inventory extends Card {
-        constructor(player) {
+        constructor(player:Player) {
             super(player);
         }
 
         renderHand(): void{
             var self = this;
 
-            var items = this.cards.map(function(item, index, array){
+            var items = this.cards.map(function(item: IItem, index, array){
 
                 // Помечаем активную карту
                 var stateClass = (index == self.active) ? ' active' : '';
@@ -37,10 +37,10 @@ module App {
             this.player.elem.querySelector('.power').textContent = ''+power;
             return power;
         }
-        tryToWear(item): boolean {
+        tryToWear(item:IItem): boolean {
             return this.checkItemCondition(item) && this.checkSlot(item) && this.checkBigItem(item);
         }
-        checkItemCondition(item): boolean {
+        checkItemCondition(item:IItem): boolean {
             if (typeof item.condition === 'function') {
                 console.log('Есть условия на шмотку');
                 if ( item.condition(this.player.char) ) {
@@ -55,7 +55,7 @@ module App {
                 return true;
             }
         }
-        checkSlot(item): boolean {
+        checkSlot(item:IItem): boolean {
             if (item.slot) {
                 console.log('Шмотка занимает слот. Нужна проверка.');
 
@@ -86,7 +86,7 @@ module App {
 
             return true;
         }
-        checkBigItem(item): boolean {
+        checkBigItem(item:IItem): boolean {
             if (item.big) {
                 console.log('Большая шмотка. Нужна проверка.');
                 if (this.player.char.race == 'dwarf') {

@@ -3,12 +3,12 @@ module App {
     export class Battle {
         player: Player;
 
-        constructor(player:any) {
+        constructor(player:Player) {
             this.player = player;
         }
 
-        match(monster:any):boolean {
-            var monsterPower = monster.level + monster.conditionalPower(this);
+        match(monster:IMonster):boolean {
+            var monsterPower = monster.level + monster.conditionalPower(this.player.char);
             var playerPower = this.player.char.getPower();
             console.log('match', monsterPower + ' vs ' + playerPower);
             if (this.player.char.charClass == 'warrior' ? playerPower >= monsterPower : playerPower > monsterPower) {
@@ -20,14 +20,14 @@ module App {
             }
         }
 
-        run(monster:any):boolean {
-            if (monster.canRun(this)) {
+        run(monster:IMonster):boolean {
+            if (monster.canRun(this.player.char)) {
                 console.log('Можно не атаковать');
                 return true;
             }
         }
 
-        win(monster:any):void {
+        win(monster:IMonster):void {
             if (this.match(monster)) {
                 this.player.char.updateLevel(monster.win.level);
                 // Получить кол-во win.treasure

@@ -1,3 +1,4 @@
+///<reference path='types.ts'/>
 ///<reference path='battle.ts'/>
 ///<reference path='hand.ts'/>
 ///<reference path='inventory.ts'/>
@@ -113,12 +114,12 @@ module App {
         }
 
         // Инвентарь
-        addItem(item){
+        addItem(item: IItem){
             this.handCl.add(item);
             this.handCl.renderHand();
         }
         // Одеть предмет
-        wearItem (item){
+        wearItem (item: IItem){
             console.log('wearItem  ', 'Собираемся одевать  ',item);
             if (this.inventoryCl.tryToWear(item)) {
                 console.log('wearItem  ', 'Все проверки прошли надеваем  ' ,item);

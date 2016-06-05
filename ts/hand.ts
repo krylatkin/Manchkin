@@ -1,14 +1,14 @@
 ///<reference path='card.ts'/>
 module App {
     export class Hand extends Card {
-        constructor(player) {
+        constructor(player:Player) {
             super(player);
         }
 
         renderHand(): void{
             var self = this;
 
-            var items = this.cards.map(function(item, index, array){
+            var items = this.cards.map(function(item: IItem, index, array){
 
                 // Помечаем активную карту
                 var stateClass = (index == self.active) ? ' active' : '';

@@ -2,16 +2,16 @@
 module App {
     export class Card {
         player: Player;
-        cards: any[] = [];
+        cards: IItem[] = [];
         active: number = undefined; // Активная карта
 
-        constructor(player) {
+        constructor(player:Player) {
             this.player = player;
         }
 
         renderHand(){}  // Abstract Class
 
-        add(item){
+        add(item:IItem){
             this.cards.push(item);
         }
         length():number {
