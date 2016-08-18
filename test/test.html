@@ -5,20 +5,21 @@
   <meta charset="utf-8">
 
   <!-- подключаем стили Mocha, для отображения результатов -->
-  <link rel="stylesheet" href="vendor/test/mocha/mocha.css">
+  <link rel="stylesheet" href="../bower_components/mocha/mocha.css">
   <!-- подключаем библиотеку Mocha -->
-  <script src="vendor/test/mocha/mocha.js"></script>
+  <script src="../bower_components/mocha/mocha.js"></script>
   <!-- настраиваем Mocha: предстоит BDD-тестирование -->
   <script>
     mocha.setup('bdd');
   </script>
 
   <!-- подключаем chai -->
-  <script src="vendor/test/chai/chai.js"></script>
+  <script src="../bower_components/chai/chai.js"></script>
   <!-- в chai есть много всего, выносим assert в глобальную область -->
   <script>
     var assert = chai.assert;
   </script>
+
 </head>
 
 <body>
@@ -168,7 +169,7 @@
                     Actions
                 </button>
 
-                <div id="actions_pl1" class="player-actions "> <!-- collapse-->
+                <div id="actions_pl2" class="player-actions "> <!-- collapse-->
                     <p>Характеристики</p>
                     <button data-action="updateLevel" data-action-options="+1">Увеличить уровень +1</button>
                     <button data-action="updateLevel" data-action-options="-2">Уменьшить уровень -2</button>
@@ -204,14 +205,10 @@
 </div><!-- /.container -->
 
   <!-- в этом скрипте находятся функции -->
-  <script src="items.js"></script>
-  <script src="js/char.js"></script>
-  <script src="js/card.js"></script>
-  <script src="js/hand.js"></script>
-  <script src="js/inventory.js"></script>
-  <script src="js/battle.js"></script>
-  <script src="js/player.js"></script>
-  <script src="init.js"></script>
+    <script src="../dist/vendor/vendor.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="../dist/js/bundle.js"></script>
 
   <!-- в этом скрипте находятся спеки -->
   <script src="test.js"></script>

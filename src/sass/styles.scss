@@ -1,19 +1,22 @@
 /* Char */
 .param {
-	font-weight: bold;
+  font-weight: bold;
 }
 /* Card */
 ul.card-list {
-	padding: 0px;
-}
-ul.card-list  .item {
+  padding: 0;
+
+  .item {
     display: inline-block;
     border: 1px solid black;
     cursor: pointer;
     width: 70px;
     margin-right: 5px;
     margin-bottom: 5px;
+    &.active {
+      border: 2px solid blue;
+    }
+  }
+
 }
-ul.card-list  .item.active {
-	border: 2px solid blue;
-}
+  

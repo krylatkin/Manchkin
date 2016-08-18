@@ -1,0 +1,43 @@
+{
+  "name": "munchkin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "gulp test",
+    "build": "NODE_ENV=production && gulp index",
+    "start": "gulp serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krylatkin/Manchkin.git"
+  },
+  "author": "Krylatkin Gennady",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krylatkin/Manchkin/issues"
+  },
+  "homepage": "https://github.com/krylatkin/Manchkin#readme",
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-cached": "^1.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-debug": "^2.1.2",
+    "gulp-filter": "^4.0.0",
+    "gulp-if": "^2.0.1",
+    "gulp-inject": "^4.1.0",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-mocha-phantomjs": "^0.11.0",
+    "gulp-order": "^1.1.1",
+    "gulp-remember": "^0.3.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.13.6",
+    "gulp-uglify": "^2.0.0",
+    "main-bower-files": "^2.13.1",
+    "run-sequence": "^1.2.2"
+  }
+}

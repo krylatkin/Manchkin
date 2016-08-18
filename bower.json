@@ -1,0 +1,23 @@
+{
+  "name": "munchkin",
+  "version": "0.0.0",
+  "homepage": "https://github.com/krylatkin/Manchkin",
+  "authors": [
+    "Krylatkin Gennady"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.7"
+  },
+  "devDependencies": {
+    "mocha": "~3.0.2",
+    "chai": "~3.5.0"
+  }
+}
