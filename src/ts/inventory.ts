@@ -86,7 +86,7 @@ module App {
         }
         checkBigItem(item:IItem): boolean {
             if (item.big) {
-                console.log('Большая шмотка. Нужна проверка.');
+                //console.log('Big clothes. Needs to be checked.');
                 if (this.player.char.race == 'dwarf') {
                     this.player.log('success', 'Dwarf can wear unlimited count of Big clothes');
                     return true;

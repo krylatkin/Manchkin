@@ -17,7 +17,7 @@ module App {
             // DOM
             if (options.elem === undefined) throw new Error("Error: Not defined the DOM Element");
             this.elem = <HTMLElement>document.querySelector(options.elem);
-            console.log(this.elem);
+            //console.log(this.elem);
             if (this.elem === null) throw new Error("Error: Element does not exist in DOM");
 
             this.char = new App.Char(this, options);
@@ -115,10 +115,10 @@ module App {
 
         // Inventory
         wearItem (item: IItem){
-            console.log('wearItem  ', 'Собираемся одевать  ',item);
+            //console.log('wearItem  ', 'Try to wear  ',item);
             this.log('default', 'Trying to wear - ' + item.name);
             if (this.inventoryCl.tryToWear(item)) {
-                console.log('wearItem  ', 'Все проверки прошли надеваем  ' ,item);
+                //console.log('wearItem  ', 'All OK. Wearing  ' ,item);
                 this.log('success', 'Successfully wearing - ' + item.name);
                 this.inventoryCl.add(item);
             }

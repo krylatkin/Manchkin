@@ -21,7 +21,7 @@ module App {
                 +'</li>';
             });
 
-            console.log(items);
+            //console.log(items);
             this.player.elem.querySelector('.hand-list').innerHTML = items.join('');
             this.player.elem.querySelector('.handCount').textContent = ''+this.length();
         }
