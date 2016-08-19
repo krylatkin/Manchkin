@@ -10,27 +10,27 @@ module App {
         match(monster:IMonster):boolean {
             var monsterPower = monster.level + monster.conditionalPower(this.player.char);
             var playerPower = this.player.char.getPower();
-            console.log('match', monsterPower + ' vs ' + playerPower);
             if (this.player.char.charClass == 'warrior' ? playerPower >= monsterPower : playerPower > monsterPower) {
-                console.log('Побеждаем');
+                this.player.log('info', 'You can defeat the monster - ' + monster.name);
                 return true;
             } else {
-                console.log('Проигрываем');
+                this.player.log('warning', 'You cannot defeat the monster - ' + monster.name);
                 return false;
             }
         }
 
         run(monster:IMonster):boolean {
             if (monster.canRun(this.player.char)) {
-                console.log('Можно не атаковать');
+                this.player.log('info', 'You could not to fight with the monster - ' + monster.name);
                 return true;
             }
         }
 
         win(monster:IMonster):void {
             if (this.match(monster)) {
+                this.player.log('success', 'You defeat the monster! - ' + monster.name);
                 this.player.char.updateLevel(monster.win.level);
-                // Получить кол-во win.treasure
+                // TODO: Get treasures in amount of monster.win.treasure
             }
         }
     }

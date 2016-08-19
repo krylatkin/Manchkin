@@ -3,24 +3,24 @@
 ///<reference path='hand.ts'/>
 ///<reference path='inventory.ts'/>
 ///<reference path='char.ts'/>
+///<reference path='game-log.ts'/>
 module App {
     export class Player {
-        elem: Element;
+        elem: HTMLElement;
 
         char: Char;
         inventoryCl: Inventory;
         handCl: Hand;
         battle: Battle;
 
-        constructor(par) {
+        constructor(options) {
             // DOM
-            if (par.elem === undefined) throw new Error("Не задан DOM Element");
-            // this.elem = document.getElementById(par.elem);
-            this.elem = document.querySelector(par.elem);
+            if (options.elem === undefined) throw new Error("Error: Not defined the DOM Element");
+            this.elem = <HTMLElement>document.querySelector(options.elem);
             console.log(this.elem);
-            if (this.elem === null) throw new Error("Элемент отсутствует в DOM");
+            if (this.elem === null) throw new Error("Error: Element does not exist in DOM");
 
-            this.char = new App.Char(this, par);
+            this.char = new App.Char(this, options);
             this.inventoryCl = new App.Inventory(this);
             this.handCl = new App.Hand(this);
             this.battle = new App.Battle(this);
@@ -32,17 +32,12 @@ module App {
             function doPlayerAction (event){
                 var action = event.target.getAttribute('data-action');
                 if (!action) return false;
-                console.log(action);
                 if(typeof self[action] == "function") {
-                    console.log("function");
                     if (event.target.hasAttribute('data-action-item')) {
                         var actionItem = event.target.getAttribute('data-action-item');
-                        console.log(actionItem);
-                        console.log(window[actionItem]);
                         self[action](window[actionItem]);
                     } else if (event.target.hasAttribute('data-action-options')) {
                         var actionOptions = event.target.getAttribute('data-action-options');
-                        console.log(actionOptions);
                         self[action](actionOptions);
                     } else {
                         self[action]();
@@ -50,11 +45,10 @@ module App {
                 }
             }
 
-            // События
+            // Events
             function bindEvents() {
 
                 this.elem.onclick = function (event) {
-                    console.log(event.target);
 
                     // Player Actions
                     if (event.target.closest('.player-actions')) {
@@ -113,24 +107,30 @@ module App {
             this.handCl.renderHand();
         }
 
-        // Инвентарь
+        // Hand
         addItem(item: IItem){
             this.handCl.add(item);
             this.handCl.renderHand();
         }
-        // Одеть предмет
+
+        // Inventory
         wearItem (item: IItem){
             console.log('wearItem  ', 'Собираемся одевать  ',item);
+            this.log('default', 'Trying to wear - ' + item.name);
             if (this.inventoryCl.tryToWear(item)) {
                 console.log('wearItem  ', 'Все проверки прошли надеваем  ' ,item);
+                this.log('success', 'Successfully wearing - ' + item.name);
                 this.inventoryCl.add(item);
             }
             this.char.getPower();
             this.inventoryCl.renderHand();
         }
 
+        log(type: string="default", text: string=""):void {
+            GameLog.getInstance().log(this, text, type);
+        }
 
-        // Для тестов
+        /* Shortcuts for methods  */
         getInventoryCount():number {
             return this.inventoryCl.length();
         }
@@ -143,7 +143,6 @@ module App {
         getPower():number {
             return this.char.getPower();
         }
-        // Для тестов и Actions
         updateLevel(level){
             return this.char.updateLevel(level);
         }
@@ -156,7 +155,6 @@ module App {
         setSex(sex){
             return this.char.setSex(sex);
         }
-        // Бой для тестов
         match(monster){
             return this.battle.match(monster);
         }

@@ -112,7 +112,7 @@ gulp.task('vendor', ['vendor:js', 'vendor:css']);
 pipes.buildIndex = function(){
     return gulp.src(paths.index)
         .pipe(gulp.dest(paths.dist))
-        .pipe($.inject(pipes.buildVendorScripts(), {relative: true, name: 'bower'}))
+        //.pipe($.inject(pipes.buildVendorScripts(), {relative: true, name: 'bower'}))
         .pipe($.inject(pipes.buildVendorStyles(), {relative: true, name: 'bower'}))
         .pipe($.inject(pipes.buildTypeScript(), {relative: true}))
         .pipe($.inject(pipes.buildStyles(), {relative: true}))

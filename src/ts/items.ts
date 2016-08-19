@@ -10,11 +10,10 @@ var item2 = {
 	power: 5,
 	gold: 200,
 	condition: function (char) {
-		// console.log(char);
 		if (char.race == 'elf') {
-			return true;			
+			return true;
 		} else {
-			console.log('Только для elf');
+            char.player.log('danger', 'Only for Elf');
 			return false;
 		}
 	}
@@ -25,11 +24,10 @@ var item3 = {
 	power: 15,
 	gold: 900,
 	condition: function (char) {
-		// console.log(char);
 		if (char.charClass == 'wizard') {
-			return true;			
+			return true;
 		} else {
-			console.log('Только для wizard');
+            char.player.log('danger', 'Only for Wizard');
 			return false;
 		}
 	}
@@ -111,7 +109,7 @@ var monster1 = {
 	level: 2,
 	conditionalPower: function(char){
 		if (char.race == 'elf') {
-			console.log('Против elf сила на 6 больше');
+            char.player.log('info', 'Against Elf stronger on 6 points');
 			return 6;
 		}
 		return 0
@@ -136,7 +134,7 @@ var monster2 = {
 	},
 	canRun: function(char){
 		if (char.level < 5) {
-			console.log('Монстр не преследует персонажей меньше 5 уровня');
+            char.player.log('info', 'Characters at level 5 and below could not to fight with this monster');
 			return true;
 		}
 	},

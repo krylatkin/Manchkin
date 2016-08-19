@@ -12,16 +12,16 @@ module App {
         renderHand(){}  // Abstract Class
 
         add(item:IItem){
+            this.player.log('info', 'Taked card - ' + item.name);
             this.cards.push(item);
         }
+
         length():number {
             return this.cards.length;
         }
+
         selectCard(event):void {
-            //console.log(event);
             var elCardList = event.target.closest('ul.card-list');
-            console.log(elCardList);
-            //var cardList = elCardList.hasAttribute('data-list') ? elCardList.getAttribute('data-list') : undefined;
             var cardList = elCardList.getAttribute('data-list');
             if (!cardList) return;
 
@@ -35,35 +35,32 @@ module App {
                     break;
                 default:
                     alert( 'default' );
-                    //return false;
             }
         }
+
         select(event, elCardList, cardList):void {
             var self = this;
 
-            console.log(cardList);
-            // Определяем элемент карты
+            // Get the card element
             var elItem = event.target.closest('.item');
-            console.log(elItem);
+            if (!elItem) return;
 
-            // Определяем карту
-            //var card = elItem.hasAttribute('data-card') ? elItem.getAttribute('data-card') : undefined;
+            // Get the card name
             var card = elItem.getAttribute('data-card');
             console.log(window[card]);
 
-            // Установка состояния активности
+            // Set no active class for all cards
             var elCards = elCardList.querySelectorAll('.item');
             [].forEach.call(elCards, function(currentValue, index, array) {
                 currentValue.className = currentValue.className.replace( /(?:^|\s)active(?!\S)/g , '' );
                 if (currentValue == elItem) {
-                    console.log('active:  ', index);
-                    console.log(self);
                     self.active = index;
                 }
             });
+            // Set active class for selected card
             elItem.classList.add('active');
-            console.log(self.active);
         }
+
         deleteCard(card):void {
             alert('itemDel: ' + this.active);
             if (card !== undefined) {

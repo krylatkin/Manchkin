@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Manchkin</title>
+    <title>Munchkin</title>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -20,115 +20,144 @@
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <h1>Manchkin</h1>
+    <h1>Munchkin Card Game</h1>
 
-        <div class="row">
+    <div id="players" class="row">
 
-            <div id="player1-holder" class="col-xs-6">
-                <div class="char">
-                    <p>Name: <span class="param name">_Player 1</span></p>
-                    <p>Race: <span class="param race">_Elf</span></p>
-                    <p>Class: <span class="param charClass">_Warrior</span></p>
-                    <p>Sex: <span class="param sex">_Male</span></p>
-                    <p>Power (<span class="param power">_4</span>)</p>
-                    <p>Level (<span class="param level">_1</span>)</p>
-                    <div class="inventory">
-                        <p>Inventory (<span class="param inventoryCount">_3</span>)</p>
-                        <ul class="inventory-list card-list" data-list="inventory">
-                            <!--<li class="inventory-item" data-card="item1" data-from="inventory">-->
-                            <!--<p>Name: Name</p>-->
-                            <!--<p>Level: 1</p>-->
-                            <!--<p>Power: 1</p>-->
-                            <!--<p>Gold: 200</p>-->
-                            <!--</li>-->
-                            <!--<li class="inventory-item active" data-card="item2" data-from="inventory">-->
-                            <!--<p>Name: Name</p>-->
-                            <!--<p>Level: 1</p>-->
-                            <!--<p>Power: 1</p>-->
-                            <!--<p>Gold: 200</p>-->
-                            <!--</li>-->
-                            <!--<li class="inventory-item" data-card="item3" data-from="inventory">-->
-                            <!--<p>Name: Name</p>-->
-                            <!--<p>Level: 1</p>-->
-                            <!--<p>Power: 1</p>-->
-                            <!--<p>Gold: 200</p>-->
-                            <!--</li>-->
-                        </ul>
+        <div id="player1-holder" class="col-xs-6">
+            <h3 class="param header-name">_Player 1</h3>
 
-                        <div class="hand-actions">
-                            <button data-action="itemDel">itemDel</button>
-                            <button data-action="itemSell">itemSell</button>
-                            <!--<button data-action="itemWear">itemWear</button>-->
-                        </div>
+            <div class="char">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <p>Name: <span class="param name">_Player 1</span></p>
                     </div>
-                    <div class="hand">
-                        <p>Hand (<span class="param handCount">_5</span>)</p>
-                        <ul class="hand-list card-list" data-list="hand">
-                            <!--<li class="hand-item" data-card="item1" data-from="hand">-->
-                            <!--<p>Name: Name</p>-->
-                            <!--<p>Level: 1</p>-->
-                            <!--<p>Power: 1</p>-->
-                            <!--<p>Gold: 200</p>-->
-                            <!--</li>-->
-                        </ul>
-
-                        <div class="hand-actions">
-                            <button data-action="itemDel">itemDel</button>
-                            <button data-action="itemWear">itemWear</button>
-                        </div>
+                    <div class="col-xs-4">
+                        <p>Race: <span class="param race">_Elf</span></p>
                     </div>
-
-                    <br>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#actions_pl1"
-                            aria-expanded="false" aria-controls="collapseExample">
-                        Actions
-                    </button>
-
-                    <div id="actions_pl1" class="player-actions "> <!-- collapse-->
-                        <p>Характеристики</p>
-                        <button data-action="updateLevel" data-action-options="+1">Увеличить уровень +1</button>
-                        <button data-action="updateLevel" data-action-options="-2">Уменьшить уровень -2</button>
-                        <button data-action="setRace" data-action-options="dwarf">Изменить расу Дварф</button>
-                        <button data-action="setCharClass" data-action-options="wizard">Изменить класс Wizard</button>
-                        <button data-action="setSex" data-action-options="female">Изменить пол Жен</button>
-                        <br>Интентарь<br>
-                        <button data-action="renderInventory">renderInventory</button>
-                        <button data-action="renderHand">renderHand</button>
-                        <button data-action="addItem" data-action-item="item1">Взять вещь в руку</button>
-                        <button data-action="wearItem" data-action-item="item1">Одеть вещь</button>
-                        <button data-action="wearItem" data-action-item="item2">Одеть вещь Elf</button>
-
-                        <button data-action="wearItem" data-action-item="item3">Одеть вещь Wizard</button>
-                        <button data-action="wearItem" data-action-item="armor1">Одеть вещь Armor</button>
-                        <button data-action="wearItem" data-action-item="hand1">Одеть вещь Hand</button>
-                        <button data-action="wearItem" data-action-item="big1">Одеть вещь Big</button>
-                        <button data-action="wearItem" data-action-item="bigHand1">Одеть вещь HandBig</button>
-                        <button data-action="wearItem" data-action-item="twohand1">Одеть вещь TwoHand</button>
-
-                        <br>Бой<br>
-                        <button data-action="match" data-action-item="monster1">Сравнить силы с Monster 1</button>
-                        <button data-action="match" data-action-item="monster2">Сравнить силы с Monster 2</button>
-                        <button data-action="run" data-action-item="monster2">Попробовать убежать от Monster 2</button>
-                        <button data-action="win" data-action-item="monster2">Победить Monster 2</button>
+                    <div class="col-xs-4">
+                        <p>Class: <span class="param charClass">_Warrior</span></p>
                     </div>
-
+                    <div class="col-xs-4">
+                        <p>Sex: <span class="param sex">_Male</span></p>
+                    </div>
+                    <div class="col-xs-4">
+                        <p>Power (<span class="param power">_4</span>)</p>
+                    </div>
+                    <div class="col-xs-4">
+                        <p>Level (<span class="param level">_1</span>)</p>
+                    </div>
                 </div>
+
+                <div class="inventory">
+                    <p>Inventory (<span class="param inventoryCount">_3</span>)</p>
+                    <ul class="inventory-list card-list" data-list="inventory">
+                        <!--<li class="inventory-item" data-card="item1" data-from="inventory">-->
+                        <!--<p>Name: Name</p>-->
+                        <!--<p>Level: 1</p>-->
+                        <!--<p>Power: 1</p>-->
+                        <!--<p>Gold: 200</p>-->
+                        <!--</li>-->
+                        <!--<li class="inventory-item active" data-card="item2" data-from="inventory">-->
+                        <!--<p>Name: Name</p>-->
+                        <!--<p>Level: 1</p>-->
+                        <!--<p>Power: 1</p>-->
+                        <!--<p>Gold: 200</p>-->
+                        <!--</li>-->
+                        <!--<li class="inventory-item" data-card="item3" data-from="inventory">-->
+                        <!--<p>Name: Name</p>-->
+                        <!--<p>Level: 1</p>-->
+                        <!--<p>Power: 1</p>-->
+                        <!--<p>Gold: 200</p>-->
+                        <!--</li>-->
+                    </ul>
+
+                    <div class="hand-actions">
+                        <!--<button data-action="itemDel">itemDel</button>-->
+                        <!--<button data-action="itemSell">itemSell</button>-->
+                        <!--<button data-action="itemWear">itemWear</button>-->
+                    </div>
+                </div>
+                <div class="hand">
+                    <p>Hand (<span class="param handCount">_5</span>)</p>
+                    <ul class="hand-list card-list" data-list="hand">
+                        <!--<li class="hand-item" data-card="item1" data-from="hand">-->
+                        <!--<p>Name: Name</p>-->
+                        <!--<p>Level: 1</p>-->
+                        <!--<p>Power: 1</p>-->
+                        <!--<p>Gold: 200</p>-->
+                        <!--</li>-->
+                    </ul>
+
+                    <div class="hand-actions">
+                        <button data-action="itemDel">Delete selected item</button>
+                        <!--<button data-action="itemDel">itemDel</button>                            -->
+                        <!--<button data-action="itemWear">itemWear</button>-->
+                    </div>
+                </div>
+
+                <br>
+                <!--<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#actions_pl1"-->
+                <!--aria-expanded="false" aria-controls="collapseExample">-->
+                <!--Actions-->
+                <!--</button>-->
+
+                <b>Actions</b>
+
+                <div class="player-actions "> <!-- collapse-->
+                    <br>Character<br>
+                    <button data-action="updateLevel" data-action-options="+1">Level Increase +1</button>
+                    <button data-action="updateLevel" data-action-options="-2">Level Decrease -2</button>
+                    <button data-action="setCharClass" data-action-options="wizard">Change Class to Wizard</button>
+                    <button data-action="setRace" data-action-options="dwarf">Change Race to Dwarf</button>
+                    <button data-action="setRace" data-action-options="elf">Change Race to Elf</button>
+                    <button data-action="setSex" data-action-options="female">Change Sex to Female</button>
+                    <br>Take Card (Hand)<br>
+                    <!--<button data-action="renderInventory">renderInventory</button>-->
+                    <!--<button data-action="renderHand">renderHand</button>-->
+                    <button data-action="addItem" data-action-item="item1">Take Item1 to Hand</button>
+                    <button data-action="addItem" data-action-item="item2">Take Item2 to Hand</button>
+                    <button data-action="addItem" data-action-item="armor1">Take Armor1 to Hand</button>
+                    <br>Try to Wear (Inventory)<br>
+                    <button data-action="wearItem" data-action-item="item2">Item (Elf)</button>
+                    <button data-action="wearItem" data-action-item="item3">Item (Wizard)</button>
+                    <button data-action="wearItem" data-action-item="armor1">Armor</button>
+                    <button data-action="wearItem" data-action-item="hand1">Hand</button>
+                    <button data-action="wearItem" data-action-item="big1">Big</button>
+                    <button data-action="wearItem" data-action-item="bigHand1">Hand and Big</button>
+                    <button data-action="wearItem" data-action-item="twohand1">TwoHand</button>
+                    <button data-action="wearItem" data-action-item="item1">Item w/o slot and conditions</button>
+
+                    <br>Battle<br>
+                    <button data-action="match" data-action-item="monster1">Compare Power with Monster 1</button>
+                    <button data-action="match" data-action-item="monster2">Compare Power with Monster 2</button>
+                    <button data-action="run" data-action-item="monster2">Run from Monster 2</button>
+                    <button data-action="win" data-action-item="monster2">Fight Monster 2</button>
+                </div>
+
             </div>
+        </div>
 
-            <div id="player2-holder" class="col-xs-6">
+        <!--<div id="player2-holder" class="col-xs-6">-->
 
-            </div>
+        <!--</div>-->
 
-        </div><!-- /.row -->
+    </div>
+    <!-- /.row -->
 
-    </div><!-- /.container -->
+    <div id="log">
+        <!--Log-->
+    </div>
 
-    <!-- bower:js-->
-    <!-- endinject -->
-    <!-- inject:js -->
-    <!-- endinject -->
+</div>
+<!-- /.container -->
+
+<!-- bower:js-->
+<!-- endinject -->
+<!-- inject:js -->
+<!-- endinject -->
 
 </body>
 </html>
